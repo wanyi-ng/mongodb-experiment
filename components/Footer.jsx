@@ -3,7 +3,7 @@ import Link from "next/link"
 const navigation = [
   {
     name: 'GitHub',
-    href: 'https://github.com/wanyi-ng/jpfp',
+    href: 'https://github.com/wanyi-ng/mongodb-experiment',
     icon: (props) => (
       <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
         <path
