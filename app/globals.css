@@ -11,3 +11,9 @@
   font-family: "Geist Mono";
   src: url("/../fonts/GeistMonoVariableVF.ttf") format("truetype");
 }
+
+@layer base {
+  body {
+    @apply bg-zinc-800
+  }
+}
