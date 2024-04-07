@@ -2,7 +2,7 @@ import { BarsArrowUpIcon, ChevronDownIcon, MagnifyingGlassIcon } from '@heroicon
 
 function SearchSkeleton() {
   return (
-    <div className="pb-5 my-16 border-b border-gray-200 sm:my-24 sm:flex sm:items-center sm:justify-between">      
+    <div className="pb-5 my-16 border-b border-gray-200 sm:my-24 sm:flex sm:items-center sm:justify-between">
       <h3 className="text-base font-semibold leading-6 text-gray-900">All Movies</h3>
       <div className="mt-3 sm:ml-4 sm:mt-0">
         <label htmlFor="mobile-search-candidate" className="sr-only">
@@ -50,8 +50,8 @@ function SearchSkeleton() {
 
 export default function LoadingAllMovies() {
   return (
-    <div className="container px-4 mx-auto sm:px-6 lg:px-8">
-      <SearchSkeleton />
+    <div className="container px-4 mx-auto my-16 sm:px-6 lg:px-8 sm:my-24">
+      {/* <SearchSkeleton /> */}
       <section className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8 animate-pulse">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((_, i) => (
             <div key={i} className="relative flex flex-col overflow-hidden bg-white border border-gray-200 rounded-lg">
