@@ -6,7 +6,7 @@ import { Bars3Icon, HomeIcon, XMarkIcon } from '@heroicons/react/24/outline'
 export default function Navbar() {
   return (
     <header>
-      <Disclosure as="nav" className="z-50 bg-white shadow">
+      <Disclosure as="nav" className="z-50 shadow">
         {({ open }) => (
           <>
             <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
