@@ -51,16 +51,32 @@ export default async function Page({ searchParams }) {
 
   return (
     <div className="container mx-auto border sm:my-32 border-zinc-300">
-       <ul className="grid grid-cols-4 gap-4 text-center">
-          {data.movies.map((movie) => (
-            <li
-              key={movie._id}
-              className="p-4 text-black bg-green-500 rounded-md"
-            >
-              {movie.title}
-            </li>
+       <section className="grid grid-cols-4 gap-4 text-center">
+        {data.movies.map((movie) => (
+            <div key={movie._id} className="relative flex flex-col overflow-hidden bg-white border border-gray-200 rounded-lg group">
+              <div className="bg-gray-200 aspect-h-4 aspect-w-3 sm:aspect-none group-hover:opacity-75 sm:h-96">
+                <img
+                  src={movie.poster}
+                  alt={movie.title}
+                  className="object-cover object-center w-full h-full sm:h-full sm:w-full"
+                />
+              </div>
+              <div className="flex flex-col flex-1 p-4 space-y-2">
+                <h3 className="text-sm font-medium text-gray-900">
+                  <a href={movie.title}>
+                    <span aria-hidden="true" className="absolute inset-0" />
+                    {movie.title}
+                  </a>
+                </h3>
+                <p className="text-sm text-gray-500">{movie.plot}</p>
+                <div className="flex flex-col justify-end flex-1">
+                  <p className="text-sm italic text-gray-500">{movie.runtime} min</p>
+                  <p className="text-base font-medium text-gray-900">{movie.year}</p>
+                </div>
+              </div>
+            </div>
           ))}
-        </ul>
+        </section>
 
         {isPageOutOfRange ? (
           <div><h1>No more pages....</h1></div>
