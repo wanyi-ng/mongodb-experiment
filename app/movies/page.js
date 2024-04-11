@@ -1,5 +1,6 @@
 import Link from "next/link"
 import clientPromise from "@/db/mongodb"
+import { ArrowLongLeftIcon, ArrowLongRightIcon} from "@heroicons/react/20/solid"
 
 export const metadata = {
   title: 'Movies',
@@ -50,7 +51,7 @@ export default async function Page({ searchParams }) {
   }
 
   return (
-    <div className="container mx-auto border sm:my-32 border-zinc-300">
+    <div className="container mx-auto sm:my-32">
        <section className="grid grid-cols-4 gap-4 text-center">
         {data.movies.map((movie) => (
             <div key={movie._id} className="relative flex flex-col overflow-hidden bg-white border border-gray-200 rounded-lg group">
@@ -79,40 +80,11 @@ export default async function Page({ searchParams }) {
         </section>
 
         {isPageOutOfRange ? (
-          <div><h1>No more pages....</h1></div>
-        ) : (
-          <div className="flex items-center justify-center mt-16">
-            <div className="flex border-[1px] gap-4 rounded-[10px] border-light-green p-4">
-              {page === 1 ? (
-                // disable Previous when page === 1
-                <div className="opacity-60" aria-disabled="true">Previous</div>
-              ) : (
-                <Link href={`?page=${prevPage}`} aria-label="Previous Page">Previous</Link>
-              )}
-
-              {pageNumbers.map((pageNumber, index) => (
-                <Link key={index}
-                  className={
-                    page === pageNumber
-                      ? "bg-green-500 fw-bold px-2 rounded-md text-black"
-                      : "hover:bg-green-500 px-1 rounded-md"
-                  }
-                  href={`?page=${pageNumber}`}
-                >
-                  {pageNumber}
-                </Link>
-              ))}
-
-              {page === totalPages ? (
-                // disable Next when page === totalPages
-                <div className="opacity-60" aria-disabled="true">Next</div>
-              ) : (
-                <Link href={`?page=${nextPage}`} aria-label="Next Page">
-                  Next
-                </Link>
-              )}
-            </div>
+          <div className="container block w-full p-12 mx-auto text-center border-2 border-gray-300 border-dashed rounded-lg hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+            <h1 className="dark:text-zinc-300">No more pages....</h1>
           </div>
+        ) : (
+          <nav></nav>
         )}
     </div>
   )
