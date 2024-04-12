@@ -52,7 +52,7 @@ export default async function Page({ searchParams }) {
 
   return (
     <div className="container mx-auto sm:my-32">
-       <section className="grid grid-cols-4 gap-4 text-center">
+       <section className="grid grid-cols-4 gap-4">
         {data.movies.map((movie) => (
             <div key={movie._id} className="relative flex flex-col overflow-hidden bg-white border border-gray-200 rounded-lg group">
               <div className="bg-gray-200 aspect-h-4 aspect-w-3 sm:aspect-none group-hover:opacity-75 sm:h-96">
@@ -84,7 +84,47 @@ export default async function Page({ searchParams }) {
             <h1 className="dark:text-zinc-300">No more pages....</h1>
           </div>
         ) : (
-          <nav></nav>
+          <nav className="flex items-center justify-between px-4 my-8 border-t border-gray-200 sm:px-0 sm:my-16">
+            <div className="flex flex-1 w-0 -mt-px">
+              {/* disable Previous when page === 1 */}
+              <Link
+                href={`?page=${prevPage}`}
+                disabled={page === 1}
+                aria-label="Previous Page"
+                className={`${page === 1 ? "pointer-events-none" : "hover:border-gray-300 hover:text-gray-700"} inline-flex items-center pt-4 pr-1 text-sm font-medium text-gray-500 border-t-2 border-transparent`}
+              >
+                <ArrowLongLeftIcon className="w-5 h-5 mr-3 text-gray-400" aria-hidden="true" />
+                Previous
+              </Link>
+            </div>
+
+            <div className="hidden md:-mt-px md:flex">
+              {/* Current: "border-indigo-500 text-indigo-600", Default: "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" */}
+              {pageNumbers.map((pageNumber, i) => (
+                <Link
+                  key={i}
+                  aria-current={`page-${pageNumber}`}
+                  className={`${pageNumber === page ? "border-indigo-500 text-indigo-600" : "hover:text-gray-700 hover:border-gray-300"} border-transparent text-gray-500 inline-flex items-center border-t-2 border-indigo-500 px-4 pt-4 text-sm font-medium`}
+                  href={`?page=${pageNumber}`}
+                >
+                  {pageNumber}
+                </Link>
+              ))}
+            </div>
+
+            <div className="flex justify-end flex-1 w-0 -mt-px">
+              {/* disable Next when page === totalPages */}
+              <Link
+                href={`?page=${nextPage}`}
+                disabled={page === totalPages}
+                aria-label="Previous Page"
+                className={`${page === totalPages ? "pointer-events-none" : "hover:border-gray-300 hover:text-gray-700"} inline-flex items-center pt-4 pl-1 text-sm font-medium text-gray-500 border-t-2 border-transparent`}
+              >
+                Next
+                <ArrowLongRightIcon className="w-5 h-5 ml-3 text-gray-400" aria-hidden="true" />
+              </Link>
+            </div>
+          </nav>
         )}
     </div>
   )
