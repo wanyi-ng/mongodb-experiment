@@ -3,13 +3,18 @@ import { Fragment, useState } from 'react'
 import { Dialog, Disclosure, Menu, Popover, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import Search from './Search'
 
-const sortOptions = [
-  { name: 'Most Popular', href: '#' },
-  { name: 'Best Rating', href: '#' },
-  { name: 'Newest', href: '#' },
-]
 const filters = [
+  {
+    id: 'sort',
+    name: 'Sort',
+    options: [
+      { value: 'Most Popular', label: 'Most Popular' },
+      { value: 'Best Rating', label: 'Best Rating' },
+      { value: 'Newest', label: 'Newest' },
+    ],
+  },
   {
     id: 'genres',
     name: 'Genres',
@@ -147,61 +152,21 @@ export default function Filters() {
       <div className="max-w-3xl px-4 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
         <section aria-labelledby="filter-heading" className="py-6 border-t border-gray-200">
           <h2 id="filter-heading" className="sr-only">
-            Product filters
+            Movie filters
           </h2>
 
-          <div className="flex items-center justify-between">
-            <Menu as="div" className="relative inline-block text-left">
-              <div>
-                <Menu.Button className="inline-flex justify-center text-sm font-medium text-gray-700 group hover:text-gray-900">
-                  Sort
-                  <ChevronDownIcon
-                    className="flex-shrink-0 w-5 h-5 ml-1 -mr-1 text-gray-400 group-hover:text-gray-500"
-                    aria-hidden="true"
-                  />
-                </Menu.Button>
-              </div>
-
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items className="absolute left-0 z-10 w-40 mt-2 origin-top-left bg-white rounded-md shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  <div className="py-1">
-                    {sortOptions.map((option) => (
-                      <Menu.Item key={option}>
-                        {({ active }) => (
-                          <a
-                            href={option.href}
-                            className={classNames(
-                              active ? 'bg-gray-100' : '',
-                              'block px-4 py-2 text-sm font-medium text-gray-900'
-                            )}
-                          >
-                            {option.name}
-                          </a>
-                        )}
-                      </Menu.Item>
-                    ))}
-                  </div>
-                </Menu.Items>
-              </Transition>
-            </Menu>
+          <div className="flex items-center justify-between gap-8">
+            <Search />
 
             <button
               type="button"
-              className="inline-block text-sm font-medium text-gray-700 hover:text-gray-900 sm:hidden"
+              className="inline-block text-sm font-medium text-gray-700 hover:text-gray-900 lg:hidden"
               onClick={() => setOpen(true)}
             >
               Filters
             </button>
 
-            <Popover.Group className="hidden sm:flex sm:items-baseline sm:space-x-8">
+            <Popover.Group className="hidden lg:flex sm:items-baseline sm:space-x-8">
               {filters.map((section, sectionIdx) => (
                 <Popover
                   as="div"
