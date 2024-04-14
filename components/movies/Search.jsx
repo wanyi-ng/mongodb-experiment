@@ -21,7 +21,7 @@ const filters = [
   },
   {
     id: 'country',
-    name: 'country',
+    name: 'Country',
     options: [
       { value: 'usa', label: 'USA' },
       { value: 'france', label: 'France' },
