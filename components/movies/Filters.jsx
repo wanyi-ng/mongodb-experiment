@@ -52,7 +52,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Search() {
+export default function Filters() {
   const [open, setOpen] = useState(false)
 
   return (

@@ -1,7 +1,7 @@
 import Link from "next/link"
 import clientPromise from "@/db/mongodb"
 import { ArrowLongLeftIcon, ArrowLongRightIcon} from "@heroicons/react/20/solid"
-import Search from "@/components/movies/Search"
+import Filters from "@/components/movies/Filters"
 
 export const metadata = {
   title: 'Movies',
@@ -62,7 +62,7 @@ export default async function Page({ searchParams }) {
         </p>
       </header>
 
-      <Search />
+      <Filters />
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-3 xl:grid-cols-4 md:grid-cols-2">
         {data.movies.map((movie) => (
             <div key={movie._id} className="relative flex flex-col overflow-hidden bg-white border border-gray-200 rounded-lg group">
