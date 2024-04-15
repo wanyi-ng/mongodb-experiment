@@ -156,7 +156,7 @@ export default function Filters() {
           </h2>
 
           <div className="flex items-center justify-between gap-8">
-            <Search />
+            <Search placeholder={"Search..."} />
 
             <button
               type="button"
