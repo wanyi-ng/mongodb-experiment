@@ -51,7 +51,7 @@ export default async function Page({ searchParams }) {
     }
   }
 
-  console.log("DATA: ", data.movies)
+  // console.log("DATA: ", data.movies)
 
   return (
     <div className="container p-8 mx-auto sm:my-16">
