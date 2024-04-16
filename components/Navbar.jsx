@@ -15,18 +15,18 @@ export default function Navbar() {
               </Link>
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                 {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
-                <a
+                <Link
                   href="/movies?page=1"
                   className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 border-b-2 border-indigo-500"
                 >
                   Movies
-                </a>
-                <a
-                  href="/test"
+                </Link>
+                <Link
+                  href="/contact"
                   className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:border-gray-300 hover:text-gray-700"
                 >
-                  Test
-                </a>
+                  Contact
+                </Link>
               </div>
               <div className="flex items-center -mr-2 sm:hidden">
                 {/* Mobile menu button */}
@@ -55,10 +55,10 @@ export default function Navbar() {
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
-                href="/test"
+                href="/contact"
                 className="block py-2 pl-3 pr-4 text-base font-medium text-gray-500 border-l-4 border-transparent hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
               >
-                Test
+                Contact
               </Disclosure.Button>
             </div>
           </Disclosure.Panel>
