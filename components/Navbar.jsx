@@ -1,9 +1,23 @@
 "use client"
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, HomeIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
+
 export default function Navbar() {
+  const pathname = usePathname()
+
+  const navigation = [
+    { name: 'Movies', href: '/movies' },
+    { name: 'Contact', href: '/contact' },
+  ]
+
+  console.log("PATHNAME: ", pathname)
+
   return (
     <Disclosure as="nav" className="z-50 shadow">
       {({ open }) => (
@@ -15,18 +29,18 @@ export default function Navbar() {
               </Link>
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                 {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
-                <Link
-                  href="/movies?page=1"
-                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 border-b-2 border-indigo-500"
-                >
-                  Movies
-                </Link>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:border-gray-300 hover:text-gray-700"
-                >
-                  Contact
-                </Link>
+                {navigation.map((item, i) => {
+                  const isActive = pathname === item.href
+                  return (
+                    <Link
+                      key={i}
+                      href={item.href}
+                      className={classNames(isActive ? "border-indigo-500  text-gray-900" : "border-transparent hover:border-gray-300 hover:text-gray-700", "inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 border-b-2")}
+                    >
+                      {item.name}
+                    </Link>
+                  )
+                })}
               </div>
               <div className="flex items-center -mr-2 sm:hidden">
                 {/* Mobile menu button */}
@@ -46,20 +60,16 @@ export default function Navbar() {
           <Disclosure.Panel className="sm:hidden">
             <div className="pt-2 pb-3 space-y-1">
               {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
-              <Disclosure.Button
-                as="a"
-                href="/movies?page=1"
-                className="block py-2 pl-3 pr-4 text-base font-medium text-indigo-700 border-l-4 border-indigo-500 bg-indigo-50"
-              >
-                Movies
-              </Disclosure.Button>
-              <Disclosure.Button
-                as="a"
-                href="/contact"
-                className="block py-2 pl-3 pr-4 text-base font-medium text-gray-500 border-l-4 border-transparent hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-              >
-                Contact
-              </Disclosure.Button>
+              {navigation.map((item, i) => (
+                <Disclosure.Button
+                  key={item.name}
+                  as="a"
+                  href={item.href}
+                  className="block py-2 pl-3 pr-4 text-base font-medium text-indigo-700 border-l-4 border-indigo-500 bg-indigo-50"
+                >
+                  {item.name}
+                </Disclosure.Button>
+              ))}
             </div>
           </Disclosure.Panel>
         </>
